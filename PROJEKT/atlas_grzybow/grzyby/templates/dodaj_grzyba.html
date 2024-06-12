@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="color: green;">Dodaj grzyba</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: green;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            text-align: left;
+            width: 100%;
+        }
+        input, textarea, select {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dodaj grzyba</h2>
+        <form method="post" enctype="multipart/form-data">
+            
+            <label for="id_nazwa">Nazwa:</label>
+            <input type="text" id="id_nazwa" name="nazwa" required>
+
+            <label for="id_kategoria">Kategoria:</label>
+            <select id="id_kategoria" name="kategoria" required>
+                {% for kategoria in form.fields.kategoria.queryset %}
+                    <option value="{{ kategoria.id }}">{{ kategoria.nazwa }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="id_opis">Opis:</label>
+            <textarea id="id_opis" name="opis" rows="4" required></textarea>
+
+            <label for="id_zdjecie">Zdjęcie:</label>
+            <input type="file" id="id_zdjecie" name="zdjecie" required>
+
+            <button type="submit">Dodaj grzyba</button>
+        </form>
+    </div>
+</body>
+</html>

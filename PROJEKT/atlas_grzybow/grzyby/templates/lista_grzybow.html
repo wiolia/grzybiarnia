@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista grzybów</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .header h1 {
+            color: #228B22; /* Zielony kolor */
+            font-size: 36px;
+            font-style: italic;
+            font-weight: bold;
+            transform: skewY(-5deg);
+            text-transform: uppercase;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .category {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #228B22; /* Zielony kolor */
+        }
+
+        .grzyb {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .grzyb img {
+            width: 100px; /* Dostosuj szerokość obrazka */
+            height: 100px; /* Dostosuj wysokość obrazka */
+            display: block;
+            margin: 0 auto;
+        }
+
+        .grzyb .nazwa {
+            font-weight: bold;
+        }
+
+        .grzyb .opis {
+            display: none;
+            margin-top: 5px;
+        }
+
+        .grzyb .opis.active {
+            display: block;
+        }
+
+        .brak-opisu {
+            color: red;
+        }
+    </style>
+    <script>
+        function toggleOpis(grzybId) {
+            var opisElement = document.getElementById(grzybId);
+            opisElement.classList.toggle("active");
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Lista grzybów</h1>
+    </div>
+    <div class="container">
+        {% for kategoria, grzyby in grzyby_dict.items %}
+            <div class="category">{{ kategoria }}</div>
+            <ul>
+                {% for grzyb in grzyby %}
+                    <li class="grzyb" onclick="toggleOpis('{{ grzyb.id }}')">
+                        <img src="{{ grzyb.zdjecie.url }}" alt="{{ grzyb.nazwa }}">
+                        <p class="nazwa">{{ grzyb.nazwa }}</p>
+                        <p class="opis" id="{{ grzyb.id }}">
+                            {% if grzyb.opis %}
+                                {{ grzyb.opis }}
+                            {% else %}
+                                <span class="brak-opisu">Opisu brak, grzybiarz nie miał weny.</span>
+                            {% endif %}
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>

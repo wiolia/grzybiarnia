@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlas Grzybów</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #228B22; /* Zielony kolor */
+            font-size: 36px;
+            font-style: italic;
+        }
+
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button-container button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: black;
+            background-color: #f0f0f0;
+            border: 2px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Witaj w atlasie grzybów!</h1>
+        <div class="button-container">
+            <button onclick="window.location.href='/dodaj_grzyb'">Formularz dodawania grzyba</button>
+            <button onclick="window.location.href='/lista_grzybow'">Lista grzybów</button>
+        </div>
+    </div>
+</body>
+</html>

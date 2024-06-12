@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grzybowe kategorie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .header h1 {
+            color: green; 
+            font-size: 36px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: green; 
+            border: 2px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .categories {
+            margin: 0 auto;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+
+        .category {
+            margin-bottom: 10px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .category h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Grzybowe kategorie</h1>
+        <div class="button-container">
+            <button onclick="window.location.href='dodaj_kategorie'">Dodaj kategorię</button>
+        </div>
+    </div>
+    
+    <div class="categories">
+        <h2>Lista kategorii:</h2>
+        <ul>
+            {% if kategorie %}
+                {% for kategoria in kategorie %}
+                <li class="category">
+                    <h2>{{ kategoria.nazwa }}</h2>
+                    <p>{{ kategoria.opis|default:"Opisu brak, grzybiarz nie miał weny." }}</p>
+                    <p>Grzyby w tej kategorii są: {{ kategoria.jadalne|yesno:"jadalne,niejadalne" }}</p>
+                </li>
+                {% endfor %}
+            {% else %}
+                <p>Brak dostępnych kategorii.</p>
+            {% endif %}
+        </ul>
+    </div>
+</body>
+</html>
