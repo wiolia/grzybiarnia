@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title style="color: green;">Dodaj grzyba</title>
+    <title>Dodaj grzyba</title>
     <style>
         body {
             display: flex;
@@ -58,24 +58,9 @@
 <body>
     <div class="container">
         <h2>Dodaj grzyba</h2>
-        <form method="post" enctype="multipart/form-data">
-            
-            <label for="id_nazwa">Nazwa:</label>
-            <input type="text" id="id_nazwa" name="nazwa" required>
-
-            <label for="id_kategoria">Kategoria:</label>
-            <select id="id_kategoria" name="kategoria" required>
-                {% for kategoria in form.fields.kategoria.queryset %}
-                    <option value="{{ kategoria.id }}">{{ kategoria.nazwa }}</option>
-                {% endfor %}
-            </select>
-
-            <label for="id_opis">Opis:</label>
-            <textarea id="id_opis" name="opis" rows="4" required></textarea>
-
-            <label for="id_zdjecie">Zdjęcie:</label>
-            <input type="file" id="id_zdjecie" name="zdjecie" required>
-
+        <form method="POST" action="{% url 'dodaj_grzyba' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
             <button type="submit">Dodaj grzyba</button>
         </form>
     </div>

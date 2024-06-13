@@ -1,106 +1,79 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "87532eea-c190-4064-b79f-84bfd826df7a",
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "<!DOCTYPE html>\n",
-    "<html lang=\"pl\">\n",
-    "<head>\n",
-    "    <meta charset=\"UTF-8\">\n",
-    "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n",
-    "    <title>Dodaj kategorię</title>\n",
-    "    <style>\n",
-    "        body {\n",
-    "            display: flex;\n",
-    "            justify-content: center;\n",
-    "            align-items: center;\n",
-    "            height: 100vh;\n",
-    "            margin: 0;\n",
-    "            font-family: Arial, sans-serif;\n",
-    "            background-color: #f0f0f0;\n",
-    "        }\n",
-    "        .container {\n",
-    "            background-color: #fff;\n",
-    "            padding: 20px;\n",
-    "            border-radius: 8px;\n",
-    "            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n",
-    "            width: 300px;\n",
-    "            text-align: center;\n",
-    "        }\n",
-    "        h2 {\n",
-    "            margin-bottom: 20px;\n",
-    "            color: #007bff; /* Kolor niebieski */\n",
-    "        }\n",
-    "        form {\n",
-    "            display: flex;\n",
-    "            flex-direction: column;\n",
-    "        }\n",
-    "        label {\n",
-    "            margin-bottom: 5px;\n",
-    "            text-align: left;\n",
-    "            width: 100%;\n",
-    "        }\n",
-    "        input[type=\"text\"], input[type=\"checkbox\"] {\n",
-    "            margin-bottom: 10px;\n",
-    "            padding: 10px;\n",
-    "            border: 1px solid #ccc;\n",
-    "            border-radius: 4px;\n",
-    "            width: 100%;\n",
-    "        }\n",
-    "        button {\n",
-    "            padding: 10px;\n",
-    "            background-color: #007bff;\n",
-    "            color: #fff;\n",
-    "            border: none;\n",
-    "            border-radius: 4px;\n",
-    "            cursor: pointer;\n",
-    "        }\n",
-    "        button:hover {\n",
-    "            background-color: #0056b3; /* Ciemniejszy odcień niebieskiego */\n",
-    "        }\n",
-    "    </style>\n",
-    "</head>\n",
-    "<body>\n",
-    "    <div class=\"container\">\n",
-    "        <h2>Dodaj kategorię grzybów</h2>\n",
-    "        <form method=\"post\">\n",
-    "            <label for=\"nazwa\">Nazwa kategorii:</label>\n",
-    "            <input type=\"text\" id=\"nazwa\" name=\"nazwa\" required>\n",
-    "\n",
-    "            <label for=\"jadalny\">Jadalny:</label>\n",
-    "            <input type=\"checkbox\" id=\"jadalny\" name=\"jadalny\">\n",
-    "\n",
-    "            <button type=\"submit\">Dodaj kategorię</button>\n",
-    "        </form>\n",
-    "    </div>\n",
-    "</body>\n",
-    "</html>\n"
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.11.5"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
-}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodaj kategorię</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #228B22; /* Zielony kolor */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            text-align: left;
+            width: 100%;
+        }
+        select, textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dodaj kategorię grzybów</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="nazwa">Nazwa kategorii:</label>
+            <input type="text" id="nazwa" name="nazwa" required>
+
+            <label for="opis">Opis kategorii:</label>
+            <textarea id="opis" name="opis" rows="4" required></textarea>
+
+            <label for="jadalnosc">Jadalność:</label>
+            <select id="jadalnosc" name="jadalnosc" required>
+                <option value="jadalny">Tak</option>
+                <option value="niejadalny">Tak, ale możesz zjeść tylko raz</option>
+            </select>
+
+            <button type="submit">Dodaj kategorię</button>
+        </form>
+    </div>
+</body>
+</html>
